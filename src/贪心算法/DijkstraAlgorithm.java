@@ -6,30 +6,44 @@ import java.util.Arrays;
  * 迪杰斯特拉算法求最短路径
  */
 public class DijkstraAlgorithm {
-    public static void dijkstra(int[][] graph, int source) {
+   public static void dijkstra(int[][] graph, int source) {
+        // 初始化节点数量
         int n = graph.length;
+        // 初始化距离数组
         int[] dist = new int[n];
+        // 初始化距离数组，距离初始化为最大值
         Arrays.fill(dist, Integer.MAX_VALUE);
+        // 距离源点的距离为0
         dist[source] = 0;
 
+        // 初始化访问标记数组
         boolean[] visited = new boolean[n];
 
+        // 循环n-1次，每次循环找到最小距离的节点，并更新距离数组
         for (int i = 0; i < n - 1; i++) {
+            // 初始化最小距离
             int minDist = Integer.MAX_VALUE;
+            // 初始化最小距离的节点
             int minIndex = -1;
 
+            // 遍历所有节点，找到最小距离的节点
             for (int j = 0; j < n; j++) {
+                // 如果节点未被访问，且距离小于最小距离
                 if (!visited[j] && dist[j] < minDist) {
+                    // 将当前节点设置为最小距离的节点
                     minDist = dist[j];
                     minIndex = j;
                 }
             }
 
+            // 将最小距离的节点标记为已访问
             visited[minIndex] = true;
 
+            // 遍历所有节点，如果节点未被访问，且节点与最小距离的节点有边，且距离小于当前距离数组中的距离，则更新距离数组
             for (int j = 0; j < n; j++) {
                 if (!visited[j] && graph[minIndex][j] != 0 && dist[minIndex] != Integer.MAX_VALUE
                         && dist[minIndex] + graph[minIndex][j] < dist[j]) {
+                    // 更新距离数组
                     dist[j] = dist[minIndex] + graph[minIndex][j];
                 }
             }
