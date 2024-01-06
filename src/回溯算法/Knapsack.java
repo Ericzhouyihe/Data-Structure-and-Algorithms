@@ -1,5 +1,9 @@
 package 回溯算法;
 
+/**
+ * 回溯算法求背包问题
+ * 没看懂的算法
+ */
 public class Knapsack {
     static int maxW = Integer.MIN_VALUE; // 存储背包中物品总重量的最大值
     static int[] weight = {2, 2, 6, 5, 4}; // 物品重量

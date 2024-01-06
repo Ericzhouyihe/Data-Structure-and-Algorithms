@@ -2,6 +2,12 @@ package 回溯算法;
 
 import java.util.Scanner;
 
+/**
+ * 装载问题
+ * 输入:物品的数量和重量;两个船的载重量
+ * 输出:第一个船的最优情况,剩余是否能装入第二个船(是否有解)
+ * 回溯法
+ */
 public class LoadingProblem {
     static final int NUM = 100;
     static int n; //集装箱数

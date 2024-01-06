@@ -2,8 +2,14 @@ package 回溯算法;
 
 import java.util.Scanner;
 
+/**
+ * 回溯算法求背包问题
+ * 存在错误--没有调通
+ */
 public class Knapsack1 {
 
+    //static int[] weight = {2, 2, 6, 5, 4}; // 物品重量
+    //static int[] value = {6, 3, 5, 4, 6}; // 物品价值
     static int NUM = 100;
     static int n; //物品个数
 

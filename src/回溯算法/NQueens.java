@@ -2,6 +2,12 @@ package 回溯算法;
 
 import java.util.Arrays;
 
+/**
+ * n后问题
+ * 输入:n
+ * 返回:所有可行的解,方案总数
+ * 思路:回溯
+ */
 public class NQueens {
     static int count = 0;
 
