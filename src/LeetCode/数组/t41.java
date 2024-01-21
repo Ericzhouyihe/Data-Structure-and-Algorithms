@@ -27,12 +27,7 @@ public class t41 {
     public static int firstMissingPositive(int[] nums) {
             int n = nums.length;
         for(int i = 0;i < n;i++){
-            if(nums[i] <= 0){
-                nums[i] = n + 1;
-            }
-        }
-        for(int i = 0;i < n;i++){
-            if(nums[i] <= n){
+            while (nums[i] > 0 && nums[i] <= n && nums[nums[i] - 1] != nums[i]){
                 int temp = nums[nums[i] - 1];
                 nums[nums[i] - 1] = nums[i] ;
                 nums[i] = temp;
@@ -48,7 +43,7 @@ public class t41 {
 
 
     public static void main(String[] args) {
-        int[] nums = new int[]{3,4,-1,1};
+        int[] nums = new int[]{3,3,2,2};
         System.out.println(firstMissingPositive(nums));
     }
 }
