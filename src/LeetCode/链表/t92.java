@@ -1,39 +1,31 @@
-package LeetCode.数组;
+package LeetCode.链表;
 
-public class t21 {
-
-    //方式一:递归
-    public static ListNode swapPairs1(ListNode head) {
-        if (head == null || head.next == null) {
-            return head;
+public class t92 {
+    public static ListNode reverseBetween(ListNode head, int left, int right) {
+        // 设置 dummyNode 是这一类问题的一般做法
+        ListNode dummyNode = new ListNode(-1);
+        dummyNode.next = head;
+        ListNode pre = dummyNode;
+        for (int i = 0; i < left - 1; i++) {
+            pre = pre.next;
         }
-        ListNode newHead = head.next;
-        head.next = swapPairs1(newHead.next);
-        newHead.next = head;
-        return newHead;
-    }
-
-    //方式二:迭代
-    public static ListNode swapPairs2(ListNode head) {
-        ListNode dummyHead = new ListNode(0,head);
-        ListNode temp = dummyHead;
-        while (temp.next != null && temp.next.next != null) {
-            ListNode node1 = temp.next;
-            ListNode node2 = temp.next.next;
-            temp.next = node2;
-            node1.next = node2.next;
-            node2.next = node1;
-            temp = node1;
+        ListNode cur = pre.next;
+        ListNode next;
+        for (int i = 0; i < right - left; i++) {
+            next = cur.next;
+            cur.next = next.next;
+            next.next = pre.next;
+            pre.next = next;
         }
-        return dummyHead.next;
+        return dummyNode.next;
     }
 
     public static void main(String[] args) {
         //链表的顺序和数据
-        int[] nums = new int[]{1,2,3,4};
+        int[] nums = new int[]{1,2,3,4,5};
         //创建相应的链表
         ListNode head = cre(nums);
-        print(swapPairs2(head));
+        print(reverseBetween(head,2,4));
     }
 
 

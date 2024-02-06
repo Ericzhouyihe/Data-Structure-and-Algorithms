@@ -1,6 +1,4 @@
-package LeetCode.数组;
-
-import java.util.List;
+package LeetCode.链表;
 
 public class t19 {
 

@@ -1,28 +1,13 @@
-package LeetCode.数组;
+package LeetCode.链表;
 
-public class t61 {
+public class t25 {
 
-    public static ListNode removeNthFromEnd(ListNode head, int k) {
-        if (k == 0 || head == null || head.next == null) {
-            return head;
-        }
-        int n = 1;
-        ListNode iter = head;
-        while (iter.next != null) {
-            iter = iter.next;
-            n++;
-        }
-        int add = n - k % n;
-        if (add == n) {
-            return head;
-        }
-        iter.next = head;
-        while (add-- > 0) {
-            iter = iter.next;
-        }
-        ListNode ret = iter.next;
-        iter.next = null;
-        return ret;
+    public  static ListNode reverseKGroup(ListNode head, int k) {
+        ListNode dummyNode = new ListNode(-1);
+        dummyNode.next = head;
+        ListNode pre = dummyNode;
+
+
     }
 
 
@@ -57,16 +42,7 @@ public class t61 {
         int[] nums = new int[]{1,2,3,4,5};
         //创建相应的链表
         ListNode head = cre(nums);
-        print(removeNthFromEnd(head,2));
-
-        System.out.println();
-
-        int[] nums1 = new int[]{0,1,2};
-        //创建相应的链表
-        ListNode head1 = cre(nums1);
-        print(removeNthFromEnd(head1,4));
-
-
+        print(reverseKGroup(head,2));
     }
 
 

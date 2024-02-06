@@ -1,4 +1,4 @@
-package LeetCode.数组;
+package LeetCode.链表;
 
 /**
  * 给定单链表吗,要求返回反转的链表
