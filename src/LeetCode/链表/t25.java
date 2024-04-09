@@ -7,7 +7,7 @@ public class t25 {
         dummyNode.next = head;
         ListNode pre = dummyNode;
 
-
+        return null;
     }
 
 
