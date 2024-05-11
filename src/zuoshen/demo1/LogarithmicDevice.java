@@ -8,9 +8,6 @@ import java.util.Arrays;
  * @qq 1552951165
  */
 public class LogarithmicDevice {
-   
-    
-    
     
     /**
      * 对数器
