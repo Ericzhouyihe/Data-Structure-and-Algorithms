@@ -7,7 +7,8 @@ import java.util.TreeMap;
 /**
  * @author ZhouYihe 1552951165@qq.com
  * @create 2024/9/23 11:09
- * @description
+ * @description TreeMap 的底层是通过红黑树实现的,可以让key实现Comparable(自然排序),或者自定义一个比较器Comparator传入构造函数,
+ * 这样传入的节点会根据你定义的规则进行排序
  */
 public class Test1TreeMap {
     
