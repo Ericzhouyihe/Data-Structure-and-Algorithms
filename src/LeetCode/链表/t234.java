@@ -15,8 +15,6 @@ public class t234 {
      * 回文链表
      * 如果是，返回 true ；否则，返回 false 。
      */
-    
-    
     // 快慢指针
     public boolean isPalindrome(ListNode head) {
         if (head == null) {
