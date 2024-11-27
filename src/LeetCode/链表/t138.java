@@ -1,13 +1,19 @@
 package LeetCode.链表;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author ZhouYihe 1552951165@qq.com
  * @create 2024/11/12 22:51
  * @description
  */
 public class t138 {
+    // 递归 + 哈希表
+    Map<Node, Node> cachedNode = new HashMap<Node, Node>();
+    
     /**
-     *给你一个长度为 n 的链表，每个节点包含一个额外增加的随机指针 random ，该指针可以指向链表中的任何节点或空节点。
+     * 给你一个长度为 n 的链表，每个节点包含一个额外增加的随机指针 random ，该指针可以指向链表中的任何节点或空节点。
      * 构造这个链表的 深拷贝。 深拷贝应该正好由 n 个 全新 节点组成，其中每个新节点的值都设为其对应的原节点的值。
      * 新节点的 next 指针和 random 指针也都应指向复制链表中的新节点，并使原链表和复制链表中的这些指针能够表示相同的链表状态。
      * 复制链表中的指针都不应指向原链表中的节点 。
@@ -17,18 +23,96 @@ public class t138 {
      * val：一个表示 Node.val 的整数。
      * random_index：随机指针指向的节点索引（范围从 0 到 n-1）；如果不指向任何节点，则为  null 。
      * 你的代码 只 接受原链表的头节点 head 作为传入参数。
-     *
      * 示例 1：
      * 输入：head = [[7,null],[13,0],[11,4],[10,2],[1,0]]
      * 输出：[[7,null],[13,0],[11,4],[10,2],[1,0]]
-     *
      * 示例 2：
      * 输入：head = [[1,1],[2,1]]
      * 输出：[[1,1],[2,1]]
-     *
      * 示例 3：
      * 输入：head = [[3,null],[3,0],[3,null]]
      * 输出：[[3,null],[3,0],[3,null]]
-     *
      */
+    
+    // 迭代 + 节点拆分
+    public Node copyRandomList(Node head) {
+        if (head == null) {
+            return null;
+        }
+        // 每个节点都复制一遍加入其中
+        for (Node node = head; node != null; node = node.next.next) {
+            Node nodeNew = new Node(node.val);
+            nodeNew.next = node.next;
+            node.next = nodeNew;
+        }
+        // 给每个复制的节点设置对应的random
+        for (Node node = head; node != null; node = node.next.next) {
+            Node nodeNew = node.next;
+            nodeNew.random = (node.random != null) ? node.random.next : null;
+        }
+        // 修改每个节点的next
+        Node headNew = head.next;
+        for (Node node = head; node != null; node = node.next) {
+            Node nodeNew = node.next;
+            node.next = node.next.next;
+            nodeNew.next = (nodeNew.next != null) ? nodeNew.next.next : null;
+        }
+        return headNew;
+    }
+    // 自己写的while循环
+    public Node copyRandomList2(Node head) {
+        if (head == null) {
+            return null;
+        }
+        Node headNew = head;
+        // 每个节点都复制一遍加入其中
+        while (headNew != null) {
+            Node node = new Node(headNew.val);
+            node.next = headNew.next;
+            headNew.next = node;
+            headNew = headNew.next.next;
+        }
+        headNew = head;
+        // 给每个复制的节点设置对应的random
+        while (headNew != null) {
+            headNew.next.random = headNew.random == null ? null : headNew.random.next;
+            headNew = headNew.next.next;
+        }
+        headNew = head.next;
+        Node currNode = head;
+        // 修改每个节点的next
+        while (currNode != null) {
+            Node nextNode = currNode.next;
+            currNode.next = currNode.next.next;
+            nextNode.next = nextNode.next == null ? null : nextNode.next.next;
+            currNode = currNode.next;
+        }
+        return headNew;
+    }
+    
+    
+    public Node copyRandomList1(Node head) {
+        if (head == null) {
+            return null;
+        }
+        if (!cachedNode.containsKey(head)) {
+            Node headNew = new Node(head.val);
+            cachedNode.put(head, headNew);
+            headNew.next = copyRandomList(head.next);
+            headNew.random = copyRandomList(head.random);
+        }
+        return cachedNode.get(head);
+    }
+    
+    class Node {
+        int val;
+        Node next;
+        Node random;
+        
+        public Node(int val) {
+            this.val = val;
+            this.next = null;
+            this.random = null;
+        }
+    }
 }
