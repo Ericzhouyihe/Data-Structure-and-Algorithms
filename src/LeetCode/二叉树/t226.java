@@ -5,7 +5,7 @@ package LeetCode.二叉树;
  * @create 2024/12/11 22:53
  * @description
  */
-public class t101 {
+public class t226 {
     /**
      * 给你一棵二叉树的根节点 root ，翻转这棵二叉树，并返回其根节点。
      * 示例 1：
