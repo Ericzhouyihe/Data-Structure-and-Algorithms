@@ -1,5 +1,8 @@
 package LeetCode.二叉树;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * @author ZhouYihe 1552951165@qq.com
  * @create 2024/12/11 23:18
@@ -16,10 +19,33 @@ public class t101 {
      * 输出：false
      */
     // 迭代法
-    
-    
-    // 递归法
     public boolean isSymmetric(TreeNode root) {
+        return check(root.left,root.right);
+    }
+    
+    public boolean check(TreeNode leftNode,TreeNode rightNode) {
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        q.offer(leftNode);
+        q.offer(rightNode);
+        while (!q.isEmpty()) {
+            leftNode = q.poll();
+            rightNode = q.poll();
+            if (leftNode == null && rightNode == null) {
+                continue;
+            }
+            if ((leftNode == null || rightNode == null) || (leftNode.val != rightNode.val)){
+                return false;
+            }
+            
+            q.offer(leftNode.left);
+            q.offer(rightNode.right);
+            q.offer(leftNode.right);
+            q.offer(rightNode.left);
+        }
+        return true;
+    }
+    // 递归法
+    public boolean isSymmetric1(TreeNode root) {
         if (root == null) {
             return true;
         }
