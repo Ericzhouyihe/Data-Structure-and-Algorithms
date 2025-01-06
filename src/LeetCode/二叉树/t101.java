@@ -1,5 +1,6 @@
 package LeetCode.二叉树;
 
+import java.util.ArrayDeque;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -9,6 +10,26 @@ import java.util.Queue;
  * @description
  */
 public class t101 {
+    public static void main(String[] args) {
+        Queue<Integer> linkedList = new LinkedList<>();
+        Queue<Integer> arrayDeque = new ArrayDeque<>();
+        linkedList.offer(null);
+        linkedList.offer(2);
+        linkedList.offer(3);
+        System.out.println(linkedList.poll());
+        System.out.println(linkedList);
+        // 会报错,因为arrayDeque不允许将值设置为null
+        // LinkedList：允许 null，因为它是一个链表结构，null 被视为有效值。
+        // ArrayDeque：不允许 null，因为它使用数组存储元素，null 用于标记空位。
+        // arrayDeque.offer(null);
+        arrayDeque.offer(1);
+        arrayDeque.offer(2);
+        arrayDeque.offer(3);
+        System.out.println(arrayDeque.poll());
+        System.out.println(arrayDeque);
+        
+    }
+    
     /**
      * 给你一个二叉树的根节点 root ， 检查它是否轴对称。
      * 示例 1：
@@ -24,7 +45,7 @@ public class t101 {
     }
     
     public boolean check(TreeNode leftNode,TreeNode rightNode) {
-        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        Queue<TreeNode> q = new ArrayDeque<>();
         q.offer(leftNode);
         q.offer(rightNode);
         while (!q.isEmpty()) {

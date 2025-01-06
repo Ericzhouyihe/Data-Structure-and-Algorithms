@@ -13,8 +13,8 @@ import java.util.List;
 public class t94 {
     // 迭代
     public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> res = new ArrayList<Integer>();
-        Deque<TreeNode> stk = new LinkedList<TreeNode>();
+        List<Integer> res = new ArrayList<>();
+        Deque<TreeNode> stk = new LinkedList<>();
         while (root != null || !stk.isEmpty()) {
             while (root != null) {
                 stk.push(root);
@@ -29,7 +29,7 @@ public class t94 {
     
     // 官方解法递归,果然简洁明了
     public List<Integer> inorderTraversal1(TreeNode root) {
-        List<Integer> res = new ArrayList<Integer>();
+        List<Integer> res = new ArrayList<>();
         inorder(root, res);
         return res;
     }
